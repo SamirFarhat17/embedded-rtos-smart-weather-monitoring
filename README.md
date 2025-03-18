@@ -1,3 +1,4 @@
+# WORK IN PROGRESS
 # Smart Weather Monitoring & Prediction System (RTOS-Enabled)
 
 ## **Project Overview**
