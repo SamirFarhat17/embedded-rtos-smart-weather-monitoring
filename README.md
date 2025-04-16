@@ -45,6 +45,72 @@ The Arduino system will be structured into **multiple FreeRTOS tasks**:
 3. **Machine Learning Model** – Trains a model to predict weather trends based on historical sensor data.
 4. **Feedback Loop** – Sends real-time alerts back to Arduino when hazardous conditions are detected.
 
+
+## Embedded Protocols
+
+This project provides hands-on experience with three fundamental embedded communication protocols. Below are the implementation details for each.
+
+### 🚀 UART (Serial Communication)
+**Implementation**:  
+- Primary communication channel between Arduino and Python backend  
+- Debugging interface via Serial Monitor  
+
+**Highlights**:  
+✔️ Configuring baud rates (1200-115200 bps)  
+✔️ Implementing packet framing with start/stop bits  
+✔️ ASCII vs binary data transmission  
+✔️ Hardware flow control (RTS/CTS) experiments  
+✔️ Error checking with checksums/CRC  
+
+
+### 🔗 I2C (Inter-Integrated Circuit)
+**Implementation**:  
+- Connecting environmental sensors (DHT22, MQ135)  
+- Potential RTC module integration  
+
+**Highlights**:  
+✔️ Master-slave configuration (Arduino as master)  
+✔️ 7-bit addressing (0x68 for RTC, etc.)  
+✔️ Clock stretching observation  
+✔️ Pull-up resistor optimization (typically 4.7kΩ)  
+✔️ Multi-master scenarios (advanced)  
+
+**Example Wiring**:
+```
+Arduino Uno   I2C Device
+   A4   ---->   SDA
+   A5   ---->   SCL
+   GND  ---->   GND
+```
+
+### ⚡ SPI (Serial Peripheral Interface)
+**Implementation**:  
+- Optional display modules (OLED/SSD1306)  
+- Data logging with SD cards  
+
+**Highlights**:  
+✔️ Full-duplex communication  
+✔️ Chip select (CS) line management  
+✔️ Clock polarity/phase modes (0-3)  
+✔️ Daisy-chaining devices  
+✔️ High-speed data transfer (8+ MHz)  
+
+**SPI Mode Reference Table**:
+
+| Mode | Clock Polarity (CPOL) | Clock Phase (CPHA) |
+|------|----------------------|-------------------|
+| 0    | 0                    | 0                 |
+| 1    | 0                    | 1                 |
+| 2    | 1                    | 0                 |
+| 3    | 1                    | 1                 |
+
+## 🔧 Troubleshooting Tips
+- **UART**: Verify baud rate matches on both ends  
+- **I2C**: Check pull-up resistors if getting NACKs  
+- **SPI**: Confirm mode settings match device specs  
+
+> **Note**: All protocols can be monitored using a logic analyzer like the Saleae clone for deeper understanding.
+
 ## **Deliverables**
 1. **Arduino Code** with FreeRTOS implementation for task scheduling.
 2. **Python Backend** for data analysis, ML training, and real-time monitoring.
